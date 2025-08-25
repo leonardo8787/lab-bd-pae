@@ -47,3 +47,40 @@ Isso apenas interrompe os containers, mas não os remove. Você pode retomá-los
 docker-compose start
 ~~~
 
+===============
+
+# Para importar os dados 
+
+
+dentro do pgAdmin (ou via psql), execute:
+
+~~~
+COPY categoria(id_categoria, nome)
+FROM '/csv-data/tcategoria.csv'
+DELIMITER ','
+CSV HEADER;
+~~~
+
+Exemplo geral (para outras tabelas):
+
+~~~
+COPY cliente(id_cliente, id_pessoa, cartao_tipo, cartao_numero, cartao_validade_mes, cartao_validade_ano)
+FROM '/csv-data/tcliente.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY pessoa(id_pessoa, nome, senha, email, id_endereco)
+FROM '/csv-data/tpessoa.csv'
+DELIMITER ','
+CSV HEADER;
+
+-- Repita para cada arquivo e tabela.
+~~~
+
+⚠️ Dicas importantes:
+
+ - Certifique-se de que os nomes das colunas no CSV batem com os nomes e ordem da tabela.
+
+ - O arquivo .csv precisa ter CSV HEADER (linha de cabeçalho) ou remova essa opção do comando.
+
+ - Se ocorrer erro de permissão, verifique permissões da pasta data.
