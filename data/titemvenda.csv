@@ -1,3 +1,4 @@
+id_item;id_venda;id_produto;codigo_rastreio;quantidade_estoque;preco_unitario;desconto;total_item
 6663;45425;749;;1;357827;0;3578270000
 473;43817;749;;1;357827;0;3578270000
 474;43818;751;;1;357827;0;3578270000

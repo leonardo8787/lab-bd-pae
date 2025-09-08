@@ -1,3 +1,4 @@
+id_cliente;id_pessoa;cartao_tipo;cartao_numero;cartao_validade_mes;cartao_validade_ano
 13231;7099;SuperiorCard;33334548430822;11;2005
 13241;2704;Distinguish;55553241058625;5;2008
 13242;5777;Distinguish;55554575453110;5;2008
