@@ -14,6 +14,7 @@ JOIN
 WHERE
     e.cidade = 'London';
 
+
 2 -- Seleciona nome, função e data de contratação dos empregados no período especificado
 SELECT
     p.nome,
@@ -26,6 +27,7 @@ JOIN
 WHERE
     e.data_contratacao BETWEEN '2010-01-01' AND '2011-12-31';
 
+
 3 -- Seleciona o ID da venda, a data e o valor total para as vendas no período
 SELECT
     id_venda,
@@ -36,25 +38,36 @@ FROM
 WHERE
     data_venda BETWEEN '2012-01-01' AND '2012-01-31';
 
+
+
 -- JUNÇAo
 
--- Consulta de diagnóstico: mostra todo o histórico de departamentos dos empregados
+-- Seleciona as informações detalhadas de cada item em cada venda
 SELECT
-    p.nome,
-    e.funcao,
-    d.nome AS nome_departamento,
-    hd.data_entrada,
-    hd.data_saida -- Incluímos a data de saída para verificação
+    v.id_venda,
+    v.data_venda,
+    p.nome AS nome_cliente,
+    prod.nome AS nome_produto,
+    iv.quantidade_estoque AS quantidade, 
+    iv.preco_unitario,
+    iv.total_item
 FROM
-    Pessoa AS p
+    ItemVenda AS iv
 JOIN
-    Empregado AS e ON p.id_pessoa = e.id_pessoa
+    Venda AS v ON iv.id_venda = v.id_venda
 JOIN
-    HistoricoDepartamento AS hd ON p.id_pessoa = hd.id_pessoa
+    Cliente AS c ON v.id_cliente = c.id_cliente
 JOIN
-    Departamento AS d ON hd.id_departamento = d.id_departamento
+    Pessoa AS p ON c.id_pessoa = p.id_pessoa
+JOIN
+    Produto AS prod ON iv.id_produto = prod.id_produto
 ORDER BY
-    p.nome, hd.data_entrada;
+    v.id_venda, nome_produto
+LIMIT 20;
+
+
+
+
 
 -- Une as tabelas Produto, Subcategoria e Categoria
 SELECT
@@ -68,6 +81,10 @@ JOIN
     Subcategoria AS s ON pr.id_subcategoria = s.id_subcategoria
 JOIN
     Categoria AS c ON s.id_categoria = c.id_categoria;
+
+
+
+
 
 -- Agrupamento e Agregação
 
@@ -190,10 +207,10 @@ WHERE
 UPDATE
     telefone_us
 SET
-    numero = '5' || numero -- Concatena o prefixo '5' ao número existente
+    numero = '5' || numero 
 WHERE
-    tipo = 1 -- Filtra apenas para celulares
-    AND estado IN ('CA', 'WA', 'FL', 'NY'); -- Filtra para os estados especificados
+    tipo = 1 
+    AND estado IN ('CA', 'WA', 'FL', 'NY'); 
 
 -- Primeiro, remove todos os telefones de trabalho
 DELETE FROM
@@ -207,3 +224,4 @@ DELETE FROM
 WHERE
     tipo = 1
     AND estado IN ('WA', 'OR', 'CA', 'TX');
+
