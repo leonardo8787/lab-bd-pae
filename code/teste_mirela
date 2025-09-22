@@ -24,10 +24,13 @@ DROP DATABASE IF EXISTS "Alunos15";
 -- Name: Alunos15; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE "Alunos15" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'C';
+-- CREATE DATABASE "Alunos15" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'C';
+CREATE DATABASE "Alunos15" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'C';
 
 
 ALTER DATABASE "Alunos15" OWNER TO postgres;
+
+SHOW server_version;
 
 \connect -reuse-previous=on "dbname='Alunos15'"
 
