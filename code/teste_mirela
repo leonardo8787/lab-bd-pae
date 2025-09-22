@@ -167,6 +167,8 @@ INSERT INTO public.professor VALUES ('Carlos', '1234   ', 'MS-3   ', 21);
 -- Data for Name: turma; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+
+
 INSERT INTO public.turma VALUES ('SCE-179', 1, 100, 30);
 INSERT INTO public.turma VALUES ('SMA-179', 1, 101, 25);
 INSERT INTO public.turma VALUES ('SMA-179', 2, 102, 30);
@@ -180,3 +182,141 @@ INSERT INTO public.turma VALUES ('SCE-200', 3, 105, 35);
 --
 -- PostgreSQL database dump complete
 --
+
+
+
+-- Segunda parte
+
+CREATE TABLE public.aluno (
+    nome character varying(40) NOT NULL,
+    nusp numeric(8,0) NOT NULL,
+    idade numeric(2,0),
+    cidade character varying(30)
+);
+
+
+CREATE TABLE public.discip (
+    sigla character(7) NOT NULL,
+    nome character varying(25) NOT NULL,
+    siglaprereq character(7),
+    nncred numeric(2,0) NOT NULL
+);
+
+CREATE TABLE public.matricula (
+    codigoturma numeric(4,0) NOT NULL,
+    nusp numeric(8,0) NOT NULL,
+    nota numeric(3,0)
+);
+
+CREATE TABLE public.ministra (
+    nnfuncprof character(7) NOT NULL,
+    codigo numeric(4,0) NOT NULL,
+    livro character varying(50)
+);
+
+CREATE TABLE public.professor (
+    nome character varying(40) NOT NULL,
+    nnfuncional character(7) NOT NULL,
+    grau character(7),
+    idade numeric(2,0)
+);
+
+CREATE TABLE public.turma (
+    sigla character(7) NOT NULL,
+    numero numeric(2,0) NOT NULL,
+    codigo numeric(4,0) NOT NULL,
+    nnalunos numeric(3,0)
+);
+
+INSERT INTO public.aluno VALUES ('Carlos', 1234, 21, 'Sao Carlos');
+INSERT INTO public.aluno VALUES ('Celso', 2345, 22, 'Sao Carlos');
+INSERT INTO public.aluno VALUES ('Cicero', 3456, 22, 'Araraquara');
+INSERT INTO public.aluno VALUES ('Carlitos', 4567, 21, 'Ibitinga');
+INSERT INTO public.aluno VALUES ('Catarina', 5678, 23, 'Sao Carlos');
+INSERT INTO public.aluno VALUES ('Cibele', 6789, 21, 'Araraquara');
+INSERT INTO public.aluno VALUES ('Corina', 7890, 25, 'Rio Claro');
+INSERT INTO public.aluno VALUES ('Celina', 8901, 27, 'Sao Carlos');
+INSERT INTO public.aluno VALUES ('Celia', 9012, 20, 'Rio Claro');
+INSERT INTO public.aluno VALUES ('Cesar', 9123, 21, 'Araraquara');
+INSERT INTO public.aluno VALUES ('Denise', 4584, 35, 'Ibate');
+INSERT INTO public.aluno VALUES ('Durval', 1479, NULL, NULL);
+INSERT INTO public.aluno VALUES ('Daniel', 1489, 19, 'Campinas');
+INSERT INTO public.aluno VALUES ('Dora', 1469, 24, NULL);
+INSERT INTO public.aluno VALUES ('Dina', 1459, NULL, 'Campinas');
+INSERT INTO public.aluno VALUES ('carlos', 8888, 21, 'Bandeirantes');
+
+
+INSERT INTO public.discip VALUES ('SCE-179', 'Base de Dados', 'SMA-179', 4);
+INSERT INTO public.discip VALUES ('SMA-179', 'Algebra', '       ', 3);
+INSERT INTO public.discip VALUES ('SCE-   ', 'Lab. Base de Dados', 'SCE-179', 4);
+
+
+INSERT INTO public.matricula VALUES (100, 1234, 8);
+INSERT INTO public.matricula VALUES (100, 2345, 9);
+INSERT INTO public.matricula VALUES (100, 4567, 7);
+INSERT INTO public.matricula VALUES (100, 8901, 4);
+INSERT INTO public.matricula VALUES (100, 9123, 9);
+INSERT INTO public.matricula VALUES (100, 3456, 7);
+INSERT INTO public.matricula VALUES (100, 9012, 6);
+INSERT INTO public.matricula VALUES (101, 2345, 7);
+INSERT INTO public.matricula VALUES (101, 3456, 9);
+INSERT INTO public.matricula VALUES (101, 2344, 3);
+INSERT INTO public.matricula VALUES (101, 4567, 5);
+INSERT INTO public.matricula VALUES (101, 6789, 6);
+INSERT INTO public.matricula VALUES (101, 7890, 10);
+INSERT INTO public.matricula VALUES (101, 8901, 7);
+INSERT INTO public.matricula VALUES (101, 9012, 9);
+INSERT INTO public.matricula VALUES (101, 1234, 9);
+INSERT INTO public.matricula VALUES (102, 2345, 7);
+INSERT INTO public.matricula VALUES (102, 3456, 9);
+INSERT INTO public.matricula VALUES (102, 4567, 10);
+INSERT INTO public.matricula VALUES (102, 5678, 7);
+INSERT INTO public.matricula VALUES (102, 9123, 9);
+INSERT INTO public.matricula VALUES (102, 8901, 9);
+INSERT INTO public.matricula VALUES (104, 2345, 7);
+INSERT INTO public.matricula VALUES (104, 3456, 10);
+INSERT INTO public.matricula VALUES (104, 4567, 4);
+INSERT INTO public.matricula VALUES (104, 6789, 5);
+INSERT INTO public.matricula VALUES (104, 7890, 9);
+INSERT INTO public.matricula VALUES (104, 8901, 8);
+INSERT INTO public.matricula VALUES (104, 9012, 9);
+INSERT INTO public.matricula VALUES (104, 1234, 4);
+INSERT INTO public.matricula VALUES (104, 5678, 8);
+INSERT INTO public.matricula VALUES (104, 9123, 7);
+
+
+INSERT INTO public.ministra VALUES ('1111   ', 100, 'Database Intro');
+INSERT INTO public.ministra VALUES ('1111   ', 103, 'Bases de Dados na Pratica');
+INSERT INTO public.ministra VALUES ('2222   ', 101, 'Algebra para Todos');
+INSERT INTO public.ministra VALUES ('3333   ', 100, 'Database Intro');
+INSERT INTO public.ministra VALUES ('3333   ', 103, 'Bases de Dados na Pratica');
+INSERT INTO public.ministra VALUES ('3333   ', 104, 'Bases de Dados na Pratica');
+INSERT INTO public.ministra VALUES ('3333   ', 102, 'Algebra Moderna');
+INSERT INTO public.ministra VALUES ('4444   ', 100, 'Database Intro');
+INSERT INTO public.ministra VALUES ('4444   ', 105, 'Bases de Dados');
+INSERT INTO public.ministra VALUES ('5555   ', 101, 'Algebra para Todos');
+INSERT INTO public.ministra VALUES ('5555   ', 102, 'Algebra Moderna');
+INSERT INTO public.ministra VALUES ('6666   ', 100, 'Introducao a bases de dados');
+INSERT INTO public.ministra VALUES ('7777   ', 101, 'Algebra Moderna');
+INSERT INTO public.ministra VALUES ('7777   ', 102, 'Algebra para Todos');
+INSERT INTO public.ministra VALUES ('9999   ', 100, 'Database Intro');
+
+
+INSERT INTO public.professor VALUES ('Ari', '1111   ', 'MS-1   ', 25);
+INSERT INTO public.professor VALUES ('Adao', '2222   ', 'MS-2   ', 30);
+INSERT INTO public.professor VALUES ('Anselmo', '3333   ', 'MS-2   ', 31);
+INSERT INTO public.professor VALUES ('Amalia', '8888   ', 'MS-3   ', 39);
+INSERT INTO public.professor VALUES ('Ana', '4444   ', 'MS-3   ', 31);
+INSERT INTO public.professor VALUES ('Alice', '5555   ', 'MS-3   ', 35);
+INSERT INTO public.professor VALUES ('Amauri', '6666   ', 'MS-3   ', 34);
+INSERT INTO public.professor VALUES ('Artur', '7777   ', 'MS-4   ', 41);
+INSERT INTO public.professor VALUES ('Adriana', '9999   ', 'MS-5   ', 45);
+INSERT INTO public.professor VALUES ('Carlos', '1234   ', 'MS-3   ', 21);
+
+
+INSERT INTO public.turma VALUES ('SCE-179', 1, 100, 30);
+INSERT INTO public.turma VALUES ('SMA-179', 1, 101, 25);
+INSERT INTO public.turma VALUES ('SMA-179', 2, 102, 30);
+INSERT INTO public.turma VALUES ('SCE-200', 1, 103, 30);
+INSERT INTO public.turma VALUES ('SCE-200', 2, 104, 40);
+INSERT INTO public.turma VALUES ('SCE-200', 3, 105, 35);
